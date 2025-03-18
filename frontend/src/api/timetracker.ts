@@ -339,11 +339,17 @@ export class CategoryApi {
    */
   static async getCategories(options: FetchOptions = { useCache: true, cacheTtl: CACHE_TTL.CATEGORIES }): Promise<Category[]> {
     try {
-      const data = await apiClient.fetch<Category[]>('/api/categories', 'GET', undefined, options);
-      return Array.isArray(data) ? data : [];
+      // Проверяем наличие токена
+      if (!authManager.getToken()) {
+        console.log('Токен не найден, перенаправляем на страницу входа');
+        window.location.href = '/login';
+        return []; // Возвращаем пустой массив вместо выброса исключения
+      }
+      
+      return await apiClient.fetch<Category[]>('/api/categories', 'GET', undefined, options);
     } catch (error) {
-      console.error("Ошибка при получении категорий:", error);
-      return [];
+      console.error('Ошибка при получении категорий:', error);
+      throw error;
     }
   }
 

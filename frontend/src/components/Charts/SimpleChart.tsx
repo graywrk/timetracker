@@ -10,7 +10,7 @@ const SimpleChart: React.FC<SimpleChartProps> = ({ data, title }) => {
   const maxValue = Math.max(...Object.values(data));
 
   return (
-    <div className="simple-chart">
+    <div className="simple-chart" data-testid="mock-simple-chart">
       <h3 className="simple-chart-title">{title}</h3>
       <div className="simple-chart-container">
         {Object.entries(data).map(([label, value]) => (

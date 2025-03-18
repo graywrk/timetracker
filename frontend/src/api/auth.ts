@@ -12,7 +12,7 @@ export interface User {
  * @param password Пароль пользователя
  * @returns Объект с данными пользователя и токеном
  */
-export const login = async (email: string, password: string): Promise<{ token: string }> => {
+export const login = async (email: string, password: string): Promise<{ token: string, user: User }> => {
   const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
     method: 'POST',
     headers: {
@@ -28,8 +28,9 @@ export const login = async (email: string, password: string): Promise<{ token: s
   
   const data = await response.json();
   
-  // Сохраняем только токен
+  // Сохраняем токен и данные пользователя
   localStorage.setItem('token', data.token);
+  localStorage.setItem('user', JSON.stringify(data.user));
   
   return data;
 };

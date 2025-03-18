@@ -101,9 +101,9 @@ describe('TimeTracker Component', () => {
     // Проверяем, что инициируется загрузка данных
     expect(timeTrackerApi.getActiveTimeEntry).toHaveBeenCalled();
     
-    // Проверяем наличие кнопки "Начать работу"
+    // Проверяем наличие кнопки "Начать запись"
     await waitFor(() => {
-      expect(screen.getByText('Начать работу')).toBeInTheDocument();
+      expect(screen.getByText('Начать запись')).toBeInTheDocument();
     });
     
     // Проверяем, что таймер показывает нулевое время
@@ -115,14 +115,14 @@ describe('TimeTracker Component', () => {
       renderWithProviders(<TimeTracker />);
     });
     
-    // Ждем, пока компонент загрузится и покажет кнопку "Начать работу"
+    // Ждем, пока компонент загрузится и покажет кнопку "Начать запись"
     await waitFor(() => {
-      expect(screen.getByText('Начать работу')).toBeInTheDocument();
+      expect(screen.getByText('Начать запись')).toBeInTheDocument();
     });
     
-    // Нажимаем кнопку "Начать работу"
+    // Нажимаем кнопку "Начать запись"
     await act(async () => {
-      fireEvent.click(screen.getByText('Начать работу'));
+      fireEvent.click(screen.getByText('Начать запись'));
     });
     
     // Проверяем, что API вызван для создания новой записи
@@ -275,9 +275,9 @@ describe('TimeTracker Component', () => {
         await (timeTrackerApi.stopTimeEntry as jest.Mock).mock.results[0].value;
       });
       
-      // После завершения должна отображаться кнопка "Начать работу"
+      // После завершения должна отображаться кнопка "Начать запись"
       await waitFor(() => {
-        expect(screen.getByText('Начать работу')).toBeInTheDocument();
+        expect(screen.getByText('Начать запись')).toBeInTheDocument();
       });
     } finally {
       // Восстанавливаем оригинальный window.confirm

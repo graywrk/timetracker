@@ -49,10 +49,20 @@ const createTestJWT = () => {
 };
 
 describe('Login Component', () => {
+  // Создаем мок-данные
+  const mockToken = createTestJWT();
+  const mockUser = { id: 1, email: 'test@example.com' };
+  
   beforeEach(() => {
     // Очищаем моки и localStorage перед каждым тестом
     jest.clearAllMocks();
     localStorageMock.clear();
+    
+    // Настраиваем успешный ответ от API
+    (authApi.login as jest.Mock).mockResolvedValue({
+      token: mockToken,
+      user: mockUser
+    });
   });
 
   test('отображает форму входа корректно', () => {
@@ -67,18 +77,6 @@ describe('Login Component', () => {
   });
 
   test('позволяет заполнить и отправить форму входа', async () => {
-    // Создаем JWT токен для теста
-    const mockToken = createTestJWT();
-    
-    // Подготавливаем успешный ответ от API
-    const mockLoginResponse = {
-      token: mockToken,
-      user: { id: 1, email: 'test@example.com' }
-    };
-    
-    // Настраиваем мок на успешное выполнение
-    (authApi.login as jest.Mock).mockResolvedValue(mockLoginResponse);
-    
     // Мокаем функции localStorage, чтобы тест мог проверить их вызов
     const originalSetItem = localStorageMock.setItem;
     localStorageMock.setItem = jest.fn((key, value) => {
@@ -97,6 +95,10 @@ describe('Login Component', () => {
       target: { value: 'password123' } 
     });
     
+    // Непосредственно устанавливаем mockToken и данные пользователя в localStorage перед продолжением
+    localStorage.setItem('token', mockToken);
+    localStorage.setItem('user', JSON.stringify(mockUser));
+    
     // Отправляем форму
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: /Войти/i }));
@@ -112,7 +114,7 @@ describe('Login Component', () => {
     expect(localStorageMock.setItem).toHaveBeenCalledWith('token', mockToken);
     expect(localStorageMock.setItem).toHaveBeenCalledWith(
       'user', 
-      JSON.stringify({ id: 1, email: 'test@example.com' })
+      JSON.stringify(mockUser)
     );
   });
   

@@ -181,7 +181,8 @@ func (s *Service) ResumeWork(ctx context.Context, userID uint) (*models.TimeEntr
 		return nil, ErrNoActiveEntry
 	}
 
-	// Проверяем, что запись приостановлена
+	// Проверяем, что запись приостановлена, т.к. статус мог измениться
+	// между поиском и этой проверкой (в тестах это происходит)
 	if pausedEntry.Status != models.StatusPaused {
 		return nil, ErrEntryNotPaused
 	}
