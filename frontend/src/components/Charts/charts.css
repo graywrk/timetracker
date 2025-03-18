@@ -1,0 +1,90 @@
+.statistics-charts {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.charts-title {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.chart-panel {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 0.5rem;
+}
+
+.chart-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: #f9f9f9;
+  color: #999;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px dashed #ddd;
+}
+
+.charts-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (min-width: 992px) {
+  .charts-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .chart-panel {
+    flex: 1 1 calc(50% - 2rem);
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics-charts {
+    padding: 1rem;
+  }
+  
+  .chart-panel {
+    padding: 0.8rem;
+  }
+  
+  .chart-container {
+    height: 300px !important;
+  }
+} 

@@ -1,0 +1,124 @@
+# Игнорирование временных файлов операционной системы
+.DS_Store
+Thumbs.db
+
+# Директории зависимостей
+/node_modules
+/.pnp
+.pnp.js
+/venv
+/.venv
+/__pycache__
+/.pytest_cache
+/.mypy_cache
+
+# Директории сборки
+/build
+/dist
+/.next
+/out
+/.nuxt
+/.vuepress/dist
+/.serverless
+/.fusebox
+/.dynamodb
+
+# Файлы окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Файлы логов
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Файлы IDE и редакторов
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.history
+
+# Файлы покрытия кода тестами
+/coverage
+.nyc_output
+
+# Различные файлы и директории
+.lock-wscript
+.npm
+.eslintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.cache
+.parcel-cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+*.mo
+*.pot
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Шаблоны для Go
+# Бинарные файлы
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Тестовые бинарные файлы
+*.test
+
+# Покрытие кода
+*.out
+
+# Директории зависимостей
+/vendor/
+/Godeps/
+
+# Директория Go build
+/bin/
+/pkg/
+
+# Локальные файлы конфигурации Go модулей
+go.work
+
+# Логи дампов
+*.log
+
+# Временные директории
+/.tmp/
+
+# Специфические файлы и директории Go инструментов
+.go-version
+.goreleaser.yml
+/.golangci.yml
+/go.sum
+*.prof
+/cover.out
+/cover.html 
